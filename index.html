@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sahas Foundation</title>
+<meta name="description" content="SAHAS Foundation — Spreading Aid Health And Smiles. A Mumbai-based NGO supporting underprivileged children, TB patients and lonely elders.">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500&family=Karla:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+  :root{
+    --ink:#1c2a44;
+    --ink-soft:#4c5771;
+    --paper:#f5f1e6;
+    --paper-raised:#fffdf8;
+    --line:#e1d8c3;
+    --marigold:#df9328;
+    --marigold-deep:#b06f1a;
+    --maroon:#9c3b2e;
+    --sage:#57744f;
+    --navy-deep:#141c30;
+    --navy-line:#2b3550;
+    --cream-on-navy:#efe7d4;
+    --cream-on-navy-soft:#b9c0d6;
+    color-scheme: light;
+  }
+
+  *{ box-sizing:border-box; }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Karla', ui-sans-serif, system-ui, sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{
+    font-family:'Fraunces', ui-serif, Georgia, serif;
+    font-weight:600;
+    color:var(--ink);
+    line-height:1.08;
+    text-wrap:balance;
+    margin:0;
+  }
+  p{ margin:0; }
+  a{ color:inherit; }
+  img{ max-width:100%; }
+  .mono{ font-family:'JetBrains Mono', ui-monospace, monospace; }
+
+  .wrap{ max-width:1180px; margin-inline:auto; padding-inline:24px; }
+  @media (max-width:640px){ .wrap{ padding-inline:18px; } }
+
+  /* ---------- header ---------- */
+  header.site{
+    position:sticky; top:0; z-index:50;
+    background:rgba(245,241,230,.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-row{
+    display:flex; align-items:center; justify-content:space-between;
+    padding-block:14px;
+  }
+  .brand{ display:flex; align-items:center; gap:10px; text-decoration:none; }
+  .brand-word{ display:flex; flex-direction:column; line-height:1.1; }
+  .brand-word b{ font-family:'Fraunces',serif; font-size:19px; font-weight:700; letter-spacing:.02em; color:var(--ink); }
+  .brand-word span{ font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-soft); }
+
+  nav.links{ display:flex; align-items:center; gap:28px; }
+  nav.links a{ font-size:14.5px; font-weight:600; text-decoration:none; color:var(--ink-soft); }
+  nav.links a:hover{ color:var(--marigold-deep); }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'Karla',sans-serif; font-weight:700; font-size:14.5px;
+    padding:10px 20px; border-radius:3px; text-decoration:none;
+    border:1px solid transparent; cursor:pointer;
+  }
+  .btn-primary{ background:var(--marigold); color:#241505; }
+  .btn-primary:hover{ background:var(--marigold-deep); }
+  .btn-ghost-navy{ background:transparent; border-color:var(--navy-line); color:var(--cream-on-navy); }
+  .btn-ghost-navy:hover{ background:var(--navy-line); }
+  .btn-line{ background:transparent; border-color:var(--ink); color:var(--ink); }
+  .btn-line:hover{ background:var(--ink); color:var(--paper); }
+
+  .menu-toggle{ display:none; background:none; border:0; cursor:pointer; padding:6px; }
+  .menu-toggle svg{ width:24px; height:24px; }
+
+  @media (max-width:860px){
+    nav.links{ position:fixed; inset:0 0 0 auto; width:min(78vw,320px); height:100dvh;
+      background:var(--navy-deep); flex-direction:column; align-items:flex-start;
+      padding:88px 28px 28px; gap:22px; transform:translateX(100%); transition:transform .3s ease; }
+    nav.links.open{ transform:translateX(0); }
+    nav.links a{ color:var(--cream-on-navy); font-size:17px; }
+    nav.links .btn-primary{ margin-top:6px; }
+    .menu-toggle{ display:block; }
+    .nav-desktop-donate{ display:none; }
+  }
+
+  /* ---------- hero ---------- */
+  .hero{ padding-block:64px 56px; }
+  .hero-grid{ display:grid; grid-template-columns:1.1fr .8fr; gap:52px; align-items:center; }
+  @media (max-width:860px){ .hero-grid{ grid-template-columns:1fr; gap:38px; } }
+
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:.08em; text-transform:uppercase;
+    color:var(--maroon); margin-bottom:18px;
+  }
+  .eyebrow::before{ content:""; width:16px; height:1px; background:var(--maroon); }
+
+  .hero h1{ font-size:clamp(36px,5.2vw,62px); font-weight:700; }
+  .hero h1 em{ font-style:italic; color:var(--marigold-deep); font-weight:500; }
+  .hero-sub{ margin-top:20px; font-size:17.5px; line-height:1.65; color:var(--ink-soft); max-width:46ch; }
+  .hero-cta{ display:flex; gap:14px; margin-top:32px; flex-wrap:wrap; }
+
+  .hero-art{ display:flex; justify-content:center; }
+  .hero-art svg{ width:100%; max-width:360px; height:auto; }
+
+  .stat-strip{
+    display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+    margin-top:56px;
+  }
+  .stat-strip div{ padding:20px 18px; border-right:1px solid var(--line); }
+  .stat-strip div:last-child{ border-right:none; }
+  .stat-num{ font-family:'JetBrains Mono',monospace; font-size:26px; font-weight:600; color:var(--ink); font-variant-numeric:tabular-nums; }
+  .stat-label{ font-size:12.5px; color:var(--ink-soft); margin-top:4px; line-height:1.4; }
+  @media (max-width:700px){ .stat-strip{ grid-template-columns:repeat(2,1fr);} .stat-strip div:nth-child(2){border-right:none;} .stat-strip div:nth-child(3){border-top:1px solid var(--line);} .stat-strip div:nth-child(4){border-top:1px solid var(--line); border-right:none;} }
+
+  /* ---------- section shells ---------- */
+  section{ padding-block:76px; }
+  @media (max-width:700px){ section{ padding-block:52px; } }
+  .section-head{ max-width:640px; margin-bottom:44px; }
+  .section-head .eyebrow{ margin-bottom:14px; }
+  .section-head h2{ font-size:clamp(28px,3.6vw,40px); }
+  .section-head p{ margin-top:14px; color:var(--ink-soft); font-size:16px; line-height:1.6; }
+
+  .navy{ background:var(--navy-deep); color:var(--cream-on-navy); }
+  .navy h2, .navy h3, .navy h4{ color:#fff; }
+  .navy .section-head p{ color:var(--cream-on-navy-soft); }
+
+  /* ---------- vision ---------- */
+  .quote-block{
+    border-left:2px solid var(--marigold); padding-left:26px; margin:36px 0 40px;
+  }
+  .quote-block p{ font-family:'Fraunces',serif; font-style:italic; font-size:21px; line-height:1.5; color:#fff; font-weight:400; }
+  .quote-block cite{ display:block; margin-top:12px; font-style:normal; font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--cream-on-navy-soft); }
+
+  .vision-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:28px; margin-top:8px; }
+  @media (max-width:800px){ .vision-grid{ grid-template-columns:1fr; } }
+  .vision-card{ border:1px solid var(--navy-line); padding:26px 22px; border-radius:4px; }
+  .vision-card h4{ font-size:19px; font-weight:600; }
+  .vision-card p{ margin-top:10px; font-size:14.5px; line-height:1.6; color:var(--cream-on-navy-soft); }
+
+  /* ---------- projects ---------- */
+  .proj-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:var(--line); border:1px solid var(--line); }
+  @media (max-width:900px){ .proj-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:640px){ .proj-grid{ grid-template-columns:1fr; } }
+  .proj-card{ background:var(--paper-raised); padding:30px 26px; display:flex; flex-direction:column; }
+  .proj-icon{ width:38px; height:38px; color:var(--maroon); }
+  .proj-card h3{ font-size:19px; margin-top:18px; font-weight:600; }
+  .proj-tag{ font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--sage); margin-top:6px; display:block; }
+  .proj-card p{ margin-top:12px; font-size:14.5px; line-height:1.6; color:var(--ink-soft); flex:1; }
+  .proj-card a.more{ margin-top:16px; font-size:13.5px; font-weight:700; color:var(--marigold-deep); text-decoration:none; display:inline-flex; align-items:center; gap:5px; }
+  .proj-card a.more:hover{ text-decoration:underline; }
+
+  /* ---------- story ---------- */
+  .story-wrap{ display:grid; grid-template-columns:.9fr 1.1fr; gap:56px; align-items:start; }
+  @media (max-width:860px){ .story-wrap{ grid-template-columns:1fr; gap:32px; } }
+  .story-copy p{ font-size:16px; line-height:1.75; color:var(--ink-soft); margin-bottom:16px; }
+  .story-copy p:last-child{ margin-bottom:0; }
+  .story-pull{
+    background:var(--paper-raised); border:1px solid var(--line); border-radius:4px; padding:28px 26px; position:sticky; top:96px;
+  }
+  .story-pull p{ font-family:'Fraunces',serif; font-size:22px; line-height:1.42; font-style:italic; color:var(--ink); }
+  .story-pull .who{ margin-top:16px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.05em; text-transform:uppercase; color:var(--maroon); }
+
+  /* ---------- team ---------- */
+  .team-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:22px; }
+  @media (max-width:860px){ .team-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:520px){ .team-grid{ grid-template-columns:1fr; } }
+  .team-card{ border:1px solid var(--line); background:var(--paper-raised); border-radius:4px; padding:24px 20px; }
+  .avatar{
+    width:46px; height:46px; border-radius:50%; background:var(--navy-deep); color:var(--marigold);
+    display:flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-weight:600; font-size:16px;
+  }
+  .team-card h4{ font-size:16.5px; margin-top:16px; font-weight:600; }
+  .team-card p{ margin-top:8px; font-size:13.5px; line-height:1.55; color:var(--ink-soft); }
+
+  /* ---------- get involved ---------- */
+  .involve-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  @media (max-width:800px){ .involve-grid{ grid-template-columns:1fr; } }
+  .involve-card{ border:1px solid var(--line); border-radius:4px; padding:28px 24px; background:var(--paper-raised); display:flex; flex-direction:column; }
+  .involve-card .tag{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--marigold-deep); letter-spacing:.05em; text-transform:uppercase; }
+  .involve-card h3{ font-size:20px; margin-top:10px; }
+  .involve-card p{ margin-top:10px; font-size:14.5px; color:var(--ink-soft); line-height:1.6; flex:1; }
+  .involve-card .btn{ margin-top:18px; align-self:flex-start; }
+
+  /* ---------- donate / contact ---------- */
+  #donate{ background:var(--paper-raised); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .donate-grid{ display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start; }
+  @media (max-width:900px){ .donate-grid{ grid-template-columns:1fr; gap:40px; } }
+
+  .passbook{
+    background:var(--navy-deep); color:var(--cream-on-navy); border-radius:6px; padding:30px 28px;
+    position:relative; overflow:hidden;
+  }
+  .passbook::before{
+    content:""; position:absolute; top:0; right:0; width:120px; height:120px;
+    background:radial-gradient(circle at top right, rgba(223,147,40,.35), transparent 70%);
+  }
+  .passbook h3{ color:#fff; font-size:18px; }
+  .passbook .row{ display:flex; justify-content:space-between; gap:16px; padding-block:12px; border-bottom:1px solid var(--navy-line); }
+  .passbook .row:last-of-type{ border-bottom:none; }
+  .passbook .k{ font-size:12.5px; color:var(--cream-on-navy-soft); }
+  .passbook .v{ font-family:'JetBrains Mono',monospace; font-size:13.5px; text-align:right; }
+  .copy-btn{
+    margin-top:20px; width:100%; background:transparent; border:1px solid var(--navy-line); color:var(--cream-on-navy);
+    padding:10px 16px; border-radius:3px; font-family:'Karla',sans-serif; font-weight:700; font-size:13.5px; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; gap:8px;
+  }
+  .copy-btn:hover{ background:var(--navy-line); }
+  .passbook-note{ margin-top:16px; font-size:12.5px; line-height:1.55; color:var(--cream-on-navy-soft); }
+
+  form.contact{ display:flex; flex-direction:column; gap:14px; }
+  .field-row{ display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  @media (max-width:520px){ .field-row{ grid-template-columns:1fr; } }
+  label{ font-size:12.5px; font-weight:700; color:var(--ink-soft); display:block; margin-bottom:6px; }
+  input, select, textarea{
+    width:100%; font-family:'Karla',sans-serif; font-size:14.5px; padding:11px 13px;
+    border:1px solid var(--line); border-radius:3px; background:var(--paper); color:var(--ink);
+  }
+  input:focus, select:focus, textarea:focus{ outline:2px solid var(--marigold); outline-offset:1px; border-color:var(--marigold); }
+  textarea{ resize:vertical; min-height:88px; }
+  .form-note{ font-size:12px; color:var(--ink-soft); margin-top:2px; }
+  .confirm{
+    display:none; align-items:center; gap:10px; background:#f1f6ee; border:1px solid #cfe0c6; color:var(--sage);
+    padding:12px 14px; border-radius:3px; font-size:13.5px; font-weight:600;
+  }
+  .confirm.show{ display:flex; }
+
+  /* ---------- footer ---------- */
+  footer{ background:var(--navy-deep); color:var(--cream-on-navy-soft); padding-block:52px 28px; }
+  .foot-grid{ display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:40px; }
+  @media (max-width:760px){ .foot-grid{ grid-template-columns:1fr; gap:30px; } }
+  .foot-grid h4{ color:#fff; font-size:13px; font-family:'JetBrains Mono',monospace; letter-spacing:.06em; text-transform:uppercase; font-weight:600; margin-bottom:14px; }
+  .foot-grid p, .foot-grid a{ font-size:14px; line-height:1.7; text-decoration:none; color:var(--cream-on-navy-soft); }
+  .foot-grid a:hover{ color:var(--marigold); }
+  .foot-copy-row{ display:flex; align-items:center; gap:10px; }
+  .foot-copy-row button{ background:none; border:0; color:var(--cream-on-navy-soft); cursor:pointer; padding:2px; display:flex; }
+  .foot-copy-row button:hover{ color:var(--marigold); }
+  .foot-bottom{ margin-top:44px; padding-top:22px; border-top:1px solid var(--navy-line); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:12.5px; }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap nav-row">
+    <a href="#top" class="brand">
+      <svg width="34" height="34" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <circle cx="20" cy="20" r="19" stroke="#df9328" stroke-width="1.4"/>
+        <path d="M12 23c1.6 3.4 4.6 5.4 8 5.4s6.4-2 8-5.4" stroke="#1c2a44" stroke-width="1.6" stroke-linecap="round"/>
+        <path d="M14 20c1.2-4 3.4-6 6-6s4.8 2 6 6" stroke="#1c2a44" stroke-width="1.6" stroke-linecap="round"/>
+        <circle cx="20" cy="10.5" r="2" fill="#df9328"/>
+      </svg>
+      <span class="brand-word"><b>SAHAS</b><span>Foundation, Mumbai</span></span>
+    </a>
+    <nav class="links" id="navLinks">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#story">Our Story</a>
+      <a href="#team">Team</a>
+      <a href="#involved">Get Involved</a>
+      <a href="#donate">Contact</a>
+      <a href="#donate" class="btn btn-primary">Donate</a>
+    </nav>
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <span class="eyebrow">Spreading Aid Health And Smiles</span>
+          <h1>For a <em>better</em> tomorrow.</h1>
+          <p class="hero-sub">Take action to help us grow. We at SAHAS, the SAHASIs, are doing our bit towards providing aid through necessary resources like education, care and support to the needy and underprivileged school kids; provide companionship to lonely elders; as well as extend our hand to any specific need of the hour.</p>
+          <div class="hero-cta">
+            <a href="#donate" class="btn btn-primary">Donate</a>
+            <a href="#projects" class="btn btn-line">See our work</a>
+          </div>
+        </div>
+        <div class="hero-art">
+          <svg viewBox="0 0 340 340" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="170" cy="170" r="150" stroke="#e1d8c3" stroke-width="1.5" stroke-dasharray="3 6"/>
+            <circle cx="170" cy="90" r="26" fill="#df9328"/>
+            <g stroke="#df9328" stroke-width="2" stroke-linecap="round">
+              <path d="M170 40v10"/><path d="M170 130v10"/>
+              <path d="M120 90h10"/><path d="M210 90h10"/>
+              <path d="M135 55l7 7"/><path d="M198 125l7 7"/>
+              <path d="M205 55l-7 7"/><path d="M142 125l-7 7"/>
+            </g>
+            <path d="M90 250c14-46 42-70 80-70s66 24 80 70" stroke="#1c2a44" stroke-width="2.4" stroke-linecap="round"/>
+            <path d="M108 200c11-30 30-46 62-46s51 16 62 46" stroke="#9c3b2e" stroke-width="2.4" stroke-linecap="round"/>
+            <path d="M70 270c30 26 65 38 100 38s70-12 100-38" stroke="#57744f" stroke-width="2.4" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+
+      <div class="stat-strip">
+        <div><div class="stat-num">2019</div><div class="stat-label">Registered under the Societies Registration Act, 1860</div></div>
+        <div><div class="stat-num">80G</div><div class="stat-label">All donations are tax-exempt to the donor</div></div>
+        <div><div class="stat-num">22+</div><div class="stat-label">TB patients on nutrition support this year</div></div>
+        <div><div class="stat-num">6</div><div class="stat-label">Children sponsored through school by founding members</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VISION / ABOUT -->
+  <section id="about" class="navy">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow" style="color:#df9328">SAHASIs · Making life a little easier</span>
+        <h2>Vision</h2>
+      </div>
+
+      <div class="quote-block">
+        <p>&ldquo;If you want to find God, serve man. To reach Narayana you must serve the Daridra Narayanas &ndash; the starving millions of India&hellip;&rdquo;</p>
+        <cite>Swami Vivekananda</cite>
+      </div>
+
+      <p style="max-width:62ch; color:var(--cream-on-navy-soft); font-size:16px; line-height:1.7; margin-bottom:18px;">
+        All those young at heart, with social consciousness, can contribute in whichever capacity they wish, by being associated with the SAHASIs. Our aim is to rouse the Indians to an awareness of their obligations and responsibilities to the nation and through the nation to humanity at large.
+      </p>
+
+      <div class="vision-grid">
+        <div class="vision-card">
+          <h4>To Provide</h4>
+          <p>A secure, happy, healthy childhood to the country's underprivileged children.</p>
+        </div>
+        <div class="vision-card">
+          <h4>And</h4>
+          <p>An interesting and cheerful existence to lonely seniors.</p>
+        </div>
+        <div class="vision-card">
+          <h4>Also</h4>
+          <p>Extending a hand for any need or during any calamity in the nation without restriction.</p>
+        </div>
+      </div>
+
+      <p style="max-width:62ch; color:var(--cream-on-navy-soft); font-size:16px; line-height:1.7; margin-top:36px;">
+        <strong style="color:#fff; font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.05em; text-transform:uppercase; font-weight:600;">Take Part —</strong>
+        Any Resident or Non Resident Indian who accepts the constitution of SAHAS can enroll as a member of SAHAS, as a life member or yearly member.
+      </p>
+    </div>
+  </section>
+
+  <!-- REGISTRATION -->
+  <section id="registration">
+    <div class="wrap" style="max-width:800px;">
+      <div class="section-head">
+        <span class="eyebrow">Sahas Foundation</span>
+        <h2>Registered &amp; tax-exempt</h2>
+      </div>
+      <p style="font-size:15.5px; line-height:1.75; color:var(--ink-soft); margin-bottom:16px;">
+        The foundation is registered with the Charity Commissioner of Mumbai under the Society Registration Act 1860, with Registration Number 2190/2019, dated December 18, 2019. A formal certificate has also been obtained from the appropriate authority that all donations to the Foundation are tax-free* to the donors. Registered under The Society Registration Act 1860, Registration No.: 2190/2019.
+      </p>
+      <p style="font-size:15.5px; line-height:1.75; color:var(--ink-soft);">
+        Donations to the society are exempt under section 80G(5) of the IT Act 1961 vide provisional certificate no. ABVAS8438DF20231, dated 13/03/2023, issued by Commissioner of IT, valid till 31-03-2026.
+      </p>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Our Projects</span>
+        <h2>Where your support goes</h2>
+      </div>
+
+      <div class="proj-grid">
+
+        <div class="proj-card">
+          <svg class="proj-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3v7m0 0l3 3m-3-3l-3 3M5 21h14a2 2 0 002-2v-1H3v1a2 2 0 002 2z"/><path d="M4 18l3.5-8h9L20 18"/></svg>
+          <span class="proj-tag">Health · Ni-kshay Mitra</span>
+          <h3>Nikshay Poshan Project</h3>
+          <p>SAHAS registered as a Ni-Kshay Mitra partner in 2023. With funds raised from Trustees, we adopted 10 poor and needy TB patients for a year in March 2024, distributing WHO-approved dry nutritious food packets to them on World TB Day. This year, with the help of friends and well-wishers, we've reached about 22 patients. An appeal: sponsoring one patient for a year costs around just Rs. 1,000/- a month.</p>
+          <a class="more" href="#donate">Sponsor a patient →</a>
+        </div>
+
+        <div class="proj-card">
+          <svg class="proj-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="6" cy="17" r="3.2"/><circle cx="18" cy="17" r="3.2"/><path d="M6 17l4-9h3l3 5h3M10 8l2 3"/></svg>
+          <span class="proj-tag">Education · Mobility</span>
+          <h3>Cycle Project — Hope for education</h3>
+          <p>In rural India, more than 60% of children drop out of school after 5th grade — high schools are far away, and 32.5% of girls drop out at the secondary level for want of a safe, affordable way to get there. SAHAS collects and refurbishes discarded bicycles, or funds new ones, so the journey to school becomes safer, faster, and life becomes a little easier. A bicycle costs roughly Rs. 4-5K new, around Rs. 2K second-hand — even Rs. 500/- from you moves us toward that goal.</p>
+          <a class="more" href="#donate">Donate a bicycle →</a>
+        </div>
+
+        <div class="proj-card">
+          <svg class="proj-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s-7-4.35-9.5-8.5C1 9 2.5 5.5 6 5c2-.3 3.5 1 4 2 .5-1 2-2.3 4-2 3.5.5 5 4 3.5 7.5C19 16.65 12 21 12 21z"/></svg>
+          <span class="proj-tag">Community pool</span>
+          <h3>Child Sponsorship</h3>
+          <p>Child sponsorship enables you to support children, their families and entire communities — giving them the chance to grow up healthy, educated and safe. Funds are pooled across five pillars: education, clean water &amp; sanitation, food &amp; nutrition, healthcare, and income training &amp; empowerment. You can sponsor an infrastructure need such as a bicycle, or school essentials like uniforms, books and bags.</p>
+          <a class="more" href="#donate">Become a sponsor →</a>
+        </div>
+
+        <div class="proj-card">
+          <svg class="proj-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 19V6a2 2 0 012-2h12a1 1 0 011 1v14"/><path d="M4 19a2 2 0 002 2h13"/><path d="M8 7h8M8 11h6"/></svg>
+          <span class="proj-tag">Education · Tuition</span>
+          <h3>3E — Educate, Encourage, Elevate</h3>
+          <p>We are in touch with schools to run a tuition assistance program for academically inclined, financially weak students, with yearly assistance based on academic performance through Standard 10th. To start, the founder members of SAHAS have each decided to sponsor one child, so that at least half a dozen are taken care of this academic year. A small amount of Rs. 8,000/- a year is enough to put a child through school — you select the child, and a report with photo is sent once the school year's need is funded.</p>
+          <a class="more" href="#donate">Sponsor a child's year →</a>
+        </div>
+
+        <div class="proj-card">
+          <svg class="proj-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2v6M9 5h6"/><rect x="5" y="8" width="14" height="13" rx="2"/><path d="M9 13h6M9 17h6"/></svg>
+          <span class="proj-tag">Public health</span>
+          <h3>Health</h3>
+          <p>Tuberculosis remains a serious health threat, and poor nutrition among the marginalised makes them especially vulnerable — more than 40 thousand are affected in Mumbai alone. Medical treatment is free, but nutrition, for the patient and their whole family, is not. As a self-financed organisation, SAHAS became a Ni-kshay Mitra and now supplies the WHO-recommended food basket to patients under the government's Nikshay Poshan Yojana, alongside our own funds.</p>
+          <a class="more" href="#donate">Support a health drive →</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- STORY -->
+  <section id="story" class="navy">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow" style="color:#df9328">Our Story</span>
+        <h2>How SAHAS began</h2>
+      </div>
+
+      <div class="story-wrap">
+        <div class="story-copy">
+          <p>SAHAS was conceived by a few of us post-retirement, free from the shackles of a scheduled work life, wanting to give back to society a little of what our country gave us, inspired by an article about a few friends from a locality who had come together to provide aid to the needy which they, as individuals, were not able to.</p>
+          <p>Seven of us then — some retirees, some still working, one a housewife, one a doctor — decided we would collect a thousand rupees each, every month, so that at opportune moments we'd be able to give our small contribution where it was needed. As luck would have it, floods devastated Assam right around the time our coffers reached about fifty thousand rupees, and we emptied our collection.</p>
+          <p>Then Himanshu from Dharavi Art told us the children of the Dharavi slums could do with some help, and around the same time we read about Hatkalwadi's severe water shortage. That project was too large for seven of us to handle alone, but it gave us an idea: we needed to be organised so others could join us with their own generosity. After much discussion we agreed on a name — SAHAS, courage — and applied to the Charity Commission to register as an Association.</p>
+          <p>Even as the paperwork was underway, one of us had an accident and was laid up with a broken back. Then COVID happened, and everything stalled for two years; more of us retired, and our beloved Doctor Aunty passed away. By late 2022 we were back on track — a bank account for transparency, and our 80G tax exemption completed with friends' help. When COVID struck, Dr Padmini Desai and Dr Ajit Desai suggested we contribute toward medical equipment for treating patients, and Himanshu came back for the slum children's food. We could do both.</p>
+          <p>Individually, most of the founders already do their bit — volunteering with orphanages, working with temple trusts, sponsoring a girl child's education or their house-help's. Together, we've decided to concentrate first on education, sponsoring six kids' education ourselves, and on adopting TB patients to look after their treatment and their family's health. Everything requires money, and donors are our backbone.</p>
+        </div>
+        <aside class="story-pull">
+          <p>&ldquo;For every project that we conceive, YOU, the people of India, are needed. Become our member if you like, or remain a donor if you so wish. But please be there to help the less privileged.&rdquo;</p>
+          <div class="who">— The founding SAHASIs</div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section id="team">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Committee Members</span>
+        <h2>Our Current Members</h2>
+      </div>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="avatar">SC</div>
+          <h4>Mr. Surendra Chavhan</h4>
+          <p>AMFI certificate holder, has his own investment firm and is into consultancy for 12+ years. Since last few years, involved with social work also.</p>
+        </div>
+        <div class="team-card">
+          <div class="avatar">DK</div>
+          <h4>Mr. Debjit Kar</h4>
+          <p>MBA with a successful marketing career for last 20+ years. Despite a killing work schedule, feels responsible and thinks we must give something in return to society.</p>
+        </div>
+        <div class="team-card">
+          <div class="avatar">SG</div>
+          <h4>Mrs. Shakuntala Gandhi</h4>
+          <p>Homemaker &amp; social worker since the last 30+ years.</p>
+        </div>
+        <div class="team-card">
+          <div class="avatar">US</div>
+          <h4>Mrs. Usha Sundaram</h4>
+          <p>Retired bank employee, much involved with various charity projects for last 25+ years.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GET INVOLVED -->
+  <section id="involved" class="navy">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow" style="color:#df9328">Take Part</span>
+        <h2>Take a part and help us grow</h2>
+      </div>
+      <div class="involve-grid">
+        <div class="involve-card">
+          <span class="tag mono">Membership</span>
+          <h3>Take Part</h3>
+          <p>Any Resident or Non Resident Indian who accepts the constitution of SAHAS can enroll as a member of SAHAS, as a life member or yearly member.</p>
+          <a href="#donate" class="btn btn-line">Know More</a>
+        </div>
+        <div class="involve-card">
+          <span class="tag mono">Volunteer</span>
+          <h3>Volunteer With Us</h3>
+          <p>Lend your time and skills to SAHAS's ongoing projects — from food-packet distribution to tutoring and outreach.</p>
+          <a href="#donate" class="btn btn-line">Sign up to volunteer</a>
+        </div>
+        <div class="involve-card">
+          <span class="tag mono">Partnership</span>
+          <h3>Partner With Us</h3>
+          <p>Schools, clinics, corporates and other NGOs — if your work overlaps with ours, let's find where we can help each other.</p>
+          <a href="#donate" class="btn btn-line">Discuss a partnership</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DONATE / CONTACT -->
+  <section id="donate">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Contact Us</span>
+        <h2>Contribute</h2>
+        <p>Online Transfer — for deposits being made in ₹ INR. All Indian deposits qualify for 80G tax exemption.</p>
+      </div>
+
+      <div class="donate-grid">
+        <div>
+          <div class="passbook">
+            <h3>Bank transfer <span class="mono" style="font-size:11px; color:var(--cream-on-navy-soft); font-weight:400;">— INR, India only</span></h3>
+            <div class="row"><span class="k">Account name</span><span class="v">SAHAS SPREADING AID<br>HEALTH AND SMILE FOUNDATION</span></div>
+            <div class="row"><span class="k">Bank</span><span class="v">SVC Cooperative Bank Ltd</span></div>
+            <div class="row"><span class="k">Account no.</span><span class="v" id="acctNo">109503130010450</span></div>
+            <div class="row"><span class="k">IFSC</span><span class="v" id="ifscCode">SVCB0000095</span></div>
+            <div class="row"><span class="k">80G certificate</span><span class="v">ABVAS8438DF20231</span></div>
+            <button class="copy-btn" id="copyBank" type="button">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="12" height="12" rx="1.5"/><path d="M5 15V5a2 2 0 012-2h10"/></svg>
+              Copy account details
+            </button>
+            <p class="passbook-note">80G(5) provisional certificate no. ABVAS8438DF20231, dated 13/03/2023, valid till 31/03/2026. Registered under the Societies Registration Act, 1860 — Reg. No. 2190/2019.</p>
+          </div>
+        </div>
+
+        <div>
+          <form class="contact" id="contactForm">
+            <div class="field-row">
+              <div><label for="fname">First name</label><input id="fname" name="fname" required></div>
+              <div><label for="lname">Last name</label><input id="lname" name="lname" required></div>
+            </div>
+            <div class="field-row">
+              <div><label for="email">Email</label><input id="email" name="email" type="email" required></div>
+              <div><label for="phone">Phone</label><input id="phone" name="phone" type="tel"></div>
+            </div>
+            <div>
+              <label for="reason">I'd like to</label>
+              <select id="reason" name="reason">
+                <option>Make a donation</option>
+                <option>Become a member</option>
+                <option>Volunteer</option>
+                <option>Explore a partnership</option>
+                <option>Something else</option>
+              </select>
+            </div>
+            <div>
+              <label for="msg">Message</label>
+              <textarea id="msg" name="msg" placeholder="Tell us a little about what you'd like to do"></textarea>
+            </div>
+            <button class="btn btn-primary" type="submit" style="margin-top:4px;">Submit Application</button>
+            <p class="form-note">This form is a working demo for the redesign — wire it to a real backend (or Wix Forms, if migrating) before going live.</p>
+            <div class="confirm" id="confirmMsg">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>
+              <span>Thanks — the SAHASIs will be in touch soon.</span>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h4>Sahas Foundation</h4>
+        <p style="max-width:32ch;">Spreading Aid, Health and Smiles — Mumbai, India. Registered Society No. 2190/2019.</p>
+      </div>
+      <div>
+        <h4>Visit</h4>
+        <p>B-144, Kalpataru Sparkle<br>Gandhi Nagar, Bandra (E)<br>Mumbai – 400051, India</p>
+      </div>
+      <div>
+        <h4>Reach us</h4>
+        <div class="foot-copy-row">
+          <a href="tel:+918850994284" id="phoneLink">+91 88509 94284</a>
+          <button type="button" data-copy="+91 88509 94284" aria-label="Copy phone number">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="12" height="12" rx="1.5"/><path d="M5 15V5a2 2 0 012-2h10"/></svg>
+          </button>
+        </div>
+        <div class="foot-copy-row" style="margin-top:6px;">
+          <a href="mailto:sahasfoundationmumbai@gmail.com">sahasfoundationmumbai@gmail.com</a>
+          <button type="button" data-copy="sahasfoundationmumbai@gmail.com" aria-label="Copy email address">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="12" height="12" rx="1.5"/><path d="M5 15V5a2 2 0 012-2h10"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Sahas Foundation. All contributions are tax-exempt under Section 80G(5).</span>
+      <span>Design concept — ready to migrate to Wix.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  menuToggle.addEventListener('click', () => {
+    const open = navLinks.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', String(open));
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+  }));
+
+  async function copyText(text){
+    try{
+      await navigator.clipboard.writeText(text);
+    }catch(e){
+      try{
+        const ta = document.createElement('textarea');
+        ta.value = text; ta.style.position='fixed'; ta.style.opacity='0';
+        document.body.appendChild(ta); ta.focus(); ta.select();
+        document.execCommand('copy'); document.body.removeChild(ta);
+      }catch(e2){}
+    }
+  }
+
+  document.getElementById('copyBank').addEventListener('click', function(){
+    const text = 'SAHAS SPREADING AID HEALTH AND SMILE FOUNDATION\nSVC Cooperative Bank Ltd\nA/C: 109503130010450\nIFSC: SVCB0000095';
+    copyText(text);
+    const label = this.lastChild;
+    label.textContent = ' Copied to clipboard';
+    setTimeout(() => { label.textContent = ' Copy account details'; }, 1600);
+  });
+
+  document.querySelectorAll('[data-copy]').forEach(btn => {
+    btn.addEventListener('click', function(){
+      copyText(this.dataset.copy);
+      this.style.color = 'var(--marigold)';
+      setTimeout(() => { this.style.color = ''; }, 1200);
+    });
+  });
+
+  document.getElementById('contactForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    document.getElementById('confirmMsg').classList.add('show');
+    this.reset();
+  });
+</script>
+
+</body>
+</html>
