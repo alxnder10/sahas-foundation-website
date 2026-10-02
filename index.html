@@ -253,7 +253,34 @@
   .mini-card p{ margin-top:10px; font-size:14px; color:var(--ink-soft); line-height:1.6; flex:1; }
   .mini-card .btn{ margin-top:16px; align-self:flex-start; }
 
+  /* ---------- blog ---------- */
+  .post{ display:grid; grid-template-columns:150px 1fr; gap:40px; border:1px solid var(--navy-line); border-radius:4px; padding:34px 32px; }
+  @media (max-width:700px){ .post{ grid-template-columns:1fr; gap:20px; padding:24px 20px; } }
+  .post-date{ font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--marigold); display:flex; flex-direction:column; }
+  .post-date b{ font-family:'Fraunces',serif; font-size:64px; line-height:1; font-weight:600; letter-spacing:0; color:#fff; margin-block:6px; }
+  .post-tag{ font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.07em; text-transform:uppercase; color:var(--marigold); }
+  .post h3{ font-size:clamp(22px,2.6vw,30px); margin-top:10px; }
+  .post p{ margin-top:14px; max-width:60ch; font-size:16px; line-height:1.7; color:var(--cream-on-navy-soft); }
+  .post-facts{ margin:26px 0 0; padding-top:22px; border-top:1px solid var(--navy-line); display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:18px 24px; }
+  .post-facts dt{ font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:.07em; text-transform:uppercase; color:var(--cream-on-navy-soft); }
+  .post-facts dd{ margin:5px 0 0; font-size:15px; color:#fff; }
+
+  /* ---------- form validation ---------- */
+  .err{ display:block; min-height:0; margin-top:5px; font-size:12.5px; font-weight:600; color:#b3261e; }
+  .err:empty{ display:none; }
+  input[aria-invalid="true"]{ border-color:#b3261e; }
+  .warn{ margin-top:8px; padding:10px 13px; border-radius:3px; background:#fbeed2; border:1px solid #e6c37a; color:#6b4710; font-size:13px; font-weight:600; line-height:1.5; }
+  .visually-hidden{ position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap; }
+
   /* ---------- footer ---------- */
+  .news{ margin-top:44px; padding-top:30px; border-top:1px solid var(--navy-line); display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+  .news h4{ color:#fff; font-size:13px; font-family:'JetBrains Mono',monospace; letter-spacing:.06em; text-transform:uppercase; font-weight:600; margin-bottom:6px; }
+  .news p{ font-size:14px; color:var(--cream-on-navy-soft); }
+  .news-field{ display:flex; gap:10px; flex:1 1 320px; max-width:480px; }
+  .news-field input{ background:var(--navy-line); border-color:var(--navy-line); color:#fff; }
+  .news-field input::placeholder{ color:var(--cream-on-navy-soft); }
+  .news-msg{ flex-basis:100%; font-size:13px; min-height:0; }
+  .news-msg:empty{ display:none; }
   footer{ background:var(--navy-deep); color:var(--cream-on-navy-soft); padding-block:52px 28px; }
   .foot-grid{ display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:40px; }
   @media (max-width:760px){ .foot-grid{ grid-template-columns:1fr; gap:30px; } }
@@ -284,6 +311,7 @@
       <a href="#about">About</a>
       <a href="#team">Team</a>
       <a href="#projects">Projects</a>
+      <a href="#blog">Blog</a>
       <a href="#donate">Contact</a>
       <a href="#donate" class="btn btn-primary">Donate</a>
     </nav>
@@ -472,11 +500,38 @@
           <svg class="proj-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2v6M9 5h6"/><rect x="5" y="8" width="14" height="13" rx="2"/><path d="M9 13h6M9 17h6"/></svg>
           <span class="proj-tag">Public health</span>
           <h3>Health</h3>
-          <p>Tuberculosis remains a serious health threat, and poor nutrition among the marginalised makes them especially vulnerable — more than 40 thousand are affected in Mumbai alone. Medical treatment is free, but nutrition, for the patient and their whole family, is not. As a self-financed organisation, SAHAS became a Ni-kshay Mitra and now supplies the WHO-recommended food basket to patients under the government's Nikshay Poshan Yojana, alongside our own funds.</p>
+          <p>Tuberculosis remains a serious health threat, and poor nutrition among the marginalised makes them especially vulnerable — more than 40 thousand are affected in Mumbai alone. Medical treatment is free, but nutrition, for the patient and their whole family, is not. As a self-financed organisation, SAHAS became a Ni-kshay Mitra and now supplies the WHO-recommended food basket to patients under the government's Nikshay Poshan Yojana, alongside our own funds. SAHAS also works on tribal healthcare and checkups, including the Health &amp; Hygiene Camp for tribal women held in Panvel on July 2, 2026.</p>
           <a class="more" href="#donate">Support a health drive →</a>
+          <a class="more" href="#blog" style="margin-top:8px;">Read about the camp →</a>
         </div>
 
       </div>
+    </div>
+  </section>
+
+  <!-- BLOG -->
+  <section id="blog" class="navy">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow" style="color:#df9328">Blog</span>
+        <h2>Latest from SAHAS</h2>
+      </div>
+
+      <article class="post">
+        <div class="post-date" aria-label="July 2, 2026">
+          <span>July</span><b>02</b><span>2026</span>
+        </div>
+        <div>
+          <span class="post-tag">Health Awareness</span>
+          <h3>Health &amp; Hygiene Camp for Tribal Women, Panvel</h3>
+          <p>A Health &amp; Hygiene Camp for tribal women was held at Madhuban Agro Farms in Dhodhani, Panvel, on July 2, 2026, with a focus on health awareness for the Katkari and Thakar communities.</p>
+          <dl class="post-facts">
+            <div><dt>Venue</dt><dd>Madhuban Agro Farms, Dhodhani</dd></div>
+            <div><dt>Area</dt><dd>Panvel</dd></div>
+            <div><dt>Communities</dt><dd>Katkari &amp; Thakar</dd></div>
+          </dl>
+        </div>
+      </article>
     </div>
   </section>
 
@@ -507,28 +562,35 @@
         </div>
 
         <div>
-          <form class="contact" id="contactForm">
+          <form class="contact" id="contactForm" novalidate>
             <div class="field-row">
-              <div><label for="fname">First name</label><input id="fname" name="fname" required></div>
-              <div><label for="lname">Last name</label><input id="lname" name="lname" required></div>
+              <div><label for="fname">First name *</label><input id="fname" name="fname" autocomplete="given-name"><span class="err" id="fnameErr" role="alert"></span></div>
+              <div><label for="lname">Last name *</label><input id="lname" name="lname" autocomplete="family-name"><span class="err" id="lnameErr" role="alert"></span></div>
             </div>
             <div class="field-row">
-              <div><label for="email">Email</label><input id="email" name="email" type="email" required></div>
-              <div><label for="phone">Phone</label><input id="phone" name="phone" type="tel"></div>
+              <div><label for="email">Email *</label><input id="email" name="email" type="email" autocomplete="email"><span class="err" id="emailErr" role="alert"></span></div>
+              <div><label for="phone">Phone *</label><input id="phone" name="phone" type="tel" autocomplete="tel"><span class="err" id="phoneErr" role="alert"></span></div>
             </div>
             <div class="field-row">
-              <div><label for="amount">Amount</label><input id="amount" name="amount" type="number" min="0" placeholder="₹"></div>
-              <div><label for="pan">PAN Number</label><input id="pan" name="pan" placeholder="For 80G receipt"></div>
+              <div><label for="amount">Amount (₹) *</label><input id="amount" name="amount" type="number" min="1" step="1" inputmode="numeric"><span class="err" id="amountErr" role="alert"></span></div>
+              <div><label for="dob">Date of birth *</label><input id="dob" name="dob" type="date" autocomplete="bday"><span class="err" id="dobErr" role="alert"></span></div>
             </div>
             <div>
-              <label for="address">Address</label>
-              <input id="address" name="address">
+              <label for="address">Address *</label>
+              <input id="address" name="address" autocomplete="street-address">
+              <span class="err" id="addressErr" role="alert"></span>
+            </div>
+            <div>
+              <label for="pan">PAN number <span id="panReq" hidden>*</span></label>
+              <input id="pan" name="pan" maxlength="10" autocapitalize="characters" spellcheck="false" placeholder="ABCDE1234F">
+              <span class="err" id="panErr" role="alert"></span>
+              <div class="warn" id="panWarn" hidden>Amount entered is above ₹2000, so a PAN number is mandatory for compliance.</div>
             </div>
             <button class="btn btn-primary" type="submit" style="margin-top:4px;">Submit Application</button>
-            <p class="form-note">This form is a working demo for the redesign — wire it to a real backend (or Wix Forms, if migrating) before going live.</p>
+            <p class="form-note">This form checks your details but is not connected to a payment gateway or inbox yet. Nothing is sent or charged.</p>
             <div class="confirm" id="confirmMsg">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6L9 17l-5-5"/></svg>
-              <span>Thanks — the SAHASIs will be in touch soon.</span>
+              <span>Your details look valid, but online payment isn't set up yet. To donate now, use the bank transfer details on this page.</span>
             </div>
           </form>
         </div>
@@ -586,9 +648,20 @@
         </div>
       </div>
     </div>
+    <form class="news" id="newsForm" novalidate>
+      <div>
+        <h4>Be the first to know</h4>
+        <p>Sign up to our newsletter to stay informed.</p>
+      </div>
+      <div class="news-field">
+        <label class="visually-hidden" for="nlEmail">Email address</label>
+        <input id="nlEmail" type="email" placeholder="Your email address" autocomplete="email">
+        <button class="btn btn-primary" type="submit">Subscribe</button>
+      </div>
+      <p class="news-msg" id="newsMsg" role="status"></p>
+    </form>
     <div class="foot-bottom">
       <span>© 2026 Sahas Foundation. All contributions are tax-exempt under Section 80G(5).</span>
-      <span>Design concept — ready to migrate to Wix.</span>
     </div>
   </div>
 </footer>
@@ -634,10 +707,58 @@
     });
   });
 
-  document.getElementById('contactForm').addEventListener('submit', function(e){
+  const PAN_LIMIT = 2000;
+  const PAN_RE = /^[A-Z]{5}[0-9]{4}[A-Z]$/;
+  const donateForm = document.getElementById('contactForm');
+  const amountEl = document.getElementById('amount');
+  const panEl = document.getElementById('pan');
+  const field = id => document.getElementById(id);
+
+  function syncPanRequirement(){
+    const needsPan = Number(amountEl.value) > PAN_LIMIT;
+    field('panWarn').hidden = !needsPan;
+    field('panReq').hidden = !needsPan;
+  }
+  amountEl.addEventListener('input', syncPanRequirement);
+  panEl.addEventListener('input', () => { panEl.value = panEl.value.toUpperCase(); });
+
+  function setError(id, message){
+    field(id + 'Err').textContent = message || '';
+    field(id).setAttribute('aria-invalid', message ? 'true' : 'false');
+  }
+
+  donateForm.addEventListener('submit', function(e){
     e.preventDefault();
-    document.getElementById('confirmMsg').classList.add('show');
-    this.reset();
+    const val = id => field(id).value.trim();
+    const amount = Number(val('amount'));
+    const pan = val('pan').toUpperCase();
+    const errors = {};
+
+    if(!val('fname')) errors.fname = 'Enter your first name.';
+    if(!val('lname')) errors.lname = 'Enter your last name.';
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val('email'))) errors.email = 'Enter a valid email address.';
+    if(!/^(\+91-?)?\d{10}$/.test(val('phone').replace(/\s+/g, ''))) errors.phone = 'Enter a 10-digit phone number.';
+    if(!(amount > 0)) errors.amount = 'Enter an amount in rupees.';
+    if(!val('dob')) errors.dob = 'Enter your date of birth.';
+    if(!val('address')) errors.address = 'Enter your address.';
+    if(amount > PAN_LIMIT && !pan) errors.pan = 'PAN is required for donations above ₹2000.';
+    else if(pan && !PAN_RE.test(pan)) errors.pan = 'PAN should look like ABCDE1234F.';
+
+    ['fname','lname','email','phone','amount','dob','address','pan'].forEach(id => setError(id, errors[id]));
+
+    const firstBad = Object.keys(errors)[0];
+    field('confirmMsg').classList.toggle('show', !firstBad);
+    if(firstBad) field(firstBad).focus();
+  });
+
+  document.getElementById('newsForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    const msg = field('newsMsg');
+    const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(field('nlEmail').value.trim());
+    msg.textContent = ok
+      ? "Newsletter signup isn't connected yet, so your email wasn't saved."
+      : 'Enter a valid email address.';
+    msg.style.color = ok ? 'var(--cream-on-navy-soft)' : '#ff9d94';
   });
 </script>
 

@@ -18,19 +18,17 @@ All copy (mission, project descriptions, founding story, committee bios, bank/80
 
 Everything lives in `index.html`: inline `<style>` for CSS, inline `<script>` for the small amount of JS (mobile nav toggle, copy-to-clipboard buttons, demo contact form). Sections, top to bottom:
 
-- Hero
-- Vision / About (`#about`)
-- Registration & tax-exemption details (`#registration`)
+- Home — hero, "Take action" bar, SAHASIs intro and vision
+- About (`#about`) — registration, 80G details, Our Story
+- Team (`#team`)
 - Projects (`#projects`) — 5 active programs
-- Our Story (`#story`)
-- Committee (`#team`)
-- Get Involved (`#involved`)
-- Donate / Contact (`#donate`)
-- Footer
+- Blog (`#blog`) — Health & Hygiene Camp, Panvel (July 2, 2026)
+- Contact / Donate (`#donate`) — bank details, donation form, Take Part / Volunteer / Partner
+- Footer — contact details and newsletter signup
 
 ## Migrating to Wix
 
-This was built to move to Wix eventually — each `<section>` above maps to one Wix section. The intent is to rebuild it in Wix's own editor (so non-technical committee members can maintain it), not to embed this code as-is. The contact form here is a local demo (`preventDefault` + a confirmation message) and isn't wired to a backend — replace it with Wix Forms, or your own backend, before using it for real submissions.
+This was built to move to Wix eventually — each `<section>` above maps to one Wix section. The intent is to rebuild it in Wix's own editor (so non-technical committee members can maintain it), not to embed this code as-is. The donation form validates input client-side (required fields, phone, email, PAN format, and PAN mandatory above ₹2000) but is not connected to a payment gateway, database or email, so nothing is sent. The newsletter signup behaves the same way. Replace both with Wix Forms / Wix Payments, or your own backend, before taking real donations.
 
 ## Known gaps
 
