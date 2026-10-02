@@ -76,10 +76,10 @@
   }
   .btn-primary{ background:var(--marigold); color:#241505; }
   .btn-primary:hover{ background:var(--marigold-deep); }
-  .btn-ghost-navy{ background:transparent; border-color:var(--navy-line); color:var(--cream-on-navy); }
-  .btn-ghost-navy:hover{ background:var(--navy-line); }
   .btn-line{ background:transparent; border-color:var(--ink); color:var(--ink); }
   .btn-line:hover{ background:var(--ink); color:var(--paper); }
+  .btn-line-invert{ background:transparent; border-color:var(--cream-on-navy-soft); color:#fff; }
+  .btn-line-invert:hover{ background:var(--navy-line); }
 
   .menu-toggle{ display:none; background:none; border:0; cursor:pointer; padding:6px; }
   .menu-toggle svg{ width:24px; height:24px; }
@@ -92,11 +92,10 @@
     nav.links a{ color:var(--cream-on-navy); font-size:17px; }
     nav.links .btn-primary{ margin-top:6px; }
     .menu-toggle{ display:block; }
-    .nav-desktop-donate{ display:none; }
   }
 
   /* ---------- hero ---------- */
-  .hero{ padding-block:64px 56px; }
+  .hero{ padding-block:64px 0; }
   .hero-grid{ display:grid; grid-template-columns:1.1fr .8fr; gap:52px; align-items:center; }
   @media (max-width:860px){ .hero-grid{ grid-template-columns:1fr; gap:38px; } }
 
@@ -110,14 +109,21 @@
   .hero h1{ font-size:clamp(36px,5.2vw,62px); font-weight:700; }
   .hero h1 em{ font-style:italic; color:var(--marigold-deep); font-weight:500; }
   .hero-sub{ margin-top:20px; font-size:17.5px; line-height:1.65; color:var(--ink-soft); max-width:46ch; }
-  .hero-cta{ display:flex; gap:14px; margin-top:32px; flex-wrap:wrap; }
 
   .hero-art{ display:flex; justify-content:center; }
   .hero-art svg{ width:100%; max-width:360px; height:auto; }
 
+  /* two-tier action bar beneath the hero, mirroring the original site's banner */
+  .action-bar{
+    margin-top:48px; background:var(--navy-deep); color:#fff;
+    display:flex; align-items:center; justify-content:space-between; gap:20px;
+    padding:22px 0;
+  }
+  .action-bar .wrap{ display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap; }
+  .action-bar p{ font-family:'Fraunces',serif; font-size:clamp(18px,2.4vw,24px); font-weight:500; }
+
   .stat-strip{
-    display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid var(--line); border-bottom:1px solid var(--line);
-    margin-top:56px;
+    display:grid; grid-template-columns:repeat(4,1fr); border-bottom:1px solid var(--line);
   }
   .stat-strip div{ padding:20px 18px; border-right:1px solid var(--line); }
   .stat-strip div:last-child{ border-right:none; }
@@ -131,6 +137,8 @@
   .section-head{ max-width:640px; margin-bottom:44px; }
   .section-head .eyebrow{ margin-bottom:14px; }
   .section-head h2{ font-size:clamp(28px,3.6vw,40px); }
+  .section-head .tagline{ font-family:'Fraunces',serif; font-style:italic; font-size:18px; color:var(--marigold-deep); margin-top:8px; }
+  .navy .section-head .tagline{ color:var(--marigold); }
   .section-head p{ margin-top:14px; color:var(--ink-soft); font-size:16px; line-height:1.6; }
 
   .navy{ background:var(--navy-deep); color:var(--cream-on-navy); }
@@ -139,16 +147,46 @@
 
   /* ---------- vision ---------- */
   .quote-block{
-    border-left:2px solid var(--marigold); padding-left:26px; margin:36px 0 40px;
+    border-left:2px solid var(--marigold); padding-left:26px; margin:36px 0 32px;
   }
   .quote-block p{ font-family:'Fraunces',serif; font-style:italic; font-size:21px; line-height:1.5; color:#fff; font-weight:400; }
   .quote-block cite{ display:block; margin-top:12px; font-style:normal; font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--cream-on-navy-soft); }
 
-  .vision-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:28px; margin-top:8px; }
-  @media (max-width:800px){ .vision-grid{ grid-template-columns:1fr; } }
-  .vision-card{ border:1px solid var(--navy-line); padding:26px 22px; border-radius:4px; }
-  .vision-card h4{ font-size:19px; font-weight:600; }
-  .vision-card p{ margin-top:10px; font-size:14.5px; line-height:1.6; color:var(--cream-on-navy-soft); }
+  .vision-list{ margin-top:36px; max-width:640px; }
+  .vision-list .row{ display:grid; grid-template-columns:120px 1fr; gap:18px; padding-block:18px; border-top:1px solid var(--navy-line); }
+  .vision-list .row:last-child{ border-bottom:1px solid var(--navy-line); }
+  .vision-list .label{ font-family:'JetBrains Mono',monospace; font-size:11.5px; letter-spacing:.06em; text-transform:uppercase; color:var(--marigold); padding-top:3px; }
+  .vision-list p{ font-size:16.5px; line-height:1.55; color:#fff; }
+  @media (max-width:520px){ .vision-list .row{ grid-template-columns:1fr; gap:6px; } }
+
+  .take-part{ margin-top:40px; padding-top:32px; border-top:1px solid var(--navy-line); display:flex; align-items:flex-end; justify-content:space-between; gap:24px; flex-wrap:wrap; }
+  .take-part p{ max-width:56ch; color:var(--cream-on-navy-soft); font-size:16px; line-height:1.7; }
+
+  /* ---------- about / story ---------- */
+  .about-copy p{ font-size:15.5px; line-height:1.75; color:var(--ink-soft); margin-bottom:16px; }
+  .about-copy p:last-child{ margin-bottom:0; }
+  .story-head{ margin-top:52px; padding-top:40px; border-top:1px solid var(--line); }
+  .story-wrap{ display:grid; grid-template-columns:.9fr 1.1fr; gap:56px; align-items:start; margin-top:28px; }
+  @media (max-width:860px){ .story-wrap{ grid-template-columns:1fr; gap:32px; } }
+  .story-copy p{ font-size:16px; line-height:1.75; color:var(--ink-soft); margin-bottom:16px; }
+  .story-copy p:last-child{ margin-bottom:0; }
+  .story-pull{
+    background:var(--navy-deep); color:#fff; border-radius:4px; padding:28px 26px; position:sticky; top:96px;
+  }
+  .story-pull p{ font-family:'Fraunces',serif; font-size:21px; line-height:1.42; font-style:italic; }
+  .story-pull .who{ margin-top:16px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.05em; text-transform:uppercase; color:var(--marigold); }
+
+  /* ---------- team ---------- */
+  .team-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:22px; }
+  @media (max-width:860px){ .team-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:520px){ .team-grid{ grid-template-columns:1fr; } }
+  .team-card{ border:1px solid var(--line); background:var(--paper-raised); border-radius:4px; padding:24px 20px; }
+  .avatar{
+    width:46px; height:46px; border-radius:50%; background:var(--navy-deep); color:var(--marigold);
+    display:flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-weight:600; font-size:16px;
+  }
+  .team-card h4{ font-size:16.5px; margin-top:16px; font-weight:600; color:var(--ink); }
+  .team-card p{ margin-top:8px; font-size:13.5px; line-height:1.55; color:var(--ink-soft); }
 
   /* ---------- projects ---------- */
   .proj-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:2px; background:var(--line); border:1px solid var(--line); }
@@ -162,40 +200,8 @@
   .proj-card a.more{ margin-top:16px; font-size:13.5px; font-weight:700; color:var(--marigold-deep); text-decoration:none; display:inline-flex; align-items:center; gap:5px; }
   .proj-card a.more:hover{ text-decoration:underline; }
 
-  /* ---------- story ---------- */
-  .story-wrap{ display:grid; grid-template-columns:.9fr 1.1fr; gap:56px; align-items:start; }
-  @media (max-width:860px){ .story-wrap{ grid-template-columns:1fr; gap:32px; } }
-  .story-copy p{ font-size:16px; line-height:1.75; color:var(--ink-soft); margin-bottom:16px; }
-  .story-copy p:last-child{ margin-bottom:0; }
-  .story-pull{
-    background:var(--paper-raised); border:1px solid var(--line); border-radius:4px; padding:28px 26px; position:sticky; top:96px;
-  }
-  .story-pull p{ font-family:'Fraunces',serif; font-size:22px; line-height:1.42; font-style:italic; color:var(--ink); }
-  .story-pull .who{ margin-top:16px; font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.05em; text-transform:uppercase; color:var(--maroon); }
-
-  /* ---------- team ---------- */
-  .team-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:22px; }
-  @media (max-width:860px){ .team-grid{ grid-template-columns:repeat(2,1fr); } }
-  @media (max-width:520px){ .team-grid{ grid-template-columns:1fr; } }
-  .team-card{ border:1px solid var(--line); background:var(--paper-raised); border-radius:4px; padding:24px 20px; }
-  .avatar{
-    width:46px; height:46px; border-radius:50%; background:var(--navy-deep); color:var(--marigold);
-    display:flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; font-weight:600; font-size:16px;
-  }
-  .team-card h4{ font-size:16.5px; margin-top:16px; font-weight:600; }
-  .team-card p{ margin-top:8px; font-size:13.5px; line-height:1.55; color:var(--ink-soft); }
-
-  /* ---------- get involved ---------- */
-  .involve-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
-  @media (max-width:800px){ .involve-grid{ grid-template-columns:1fr; } }
-  .involve-card{ border:1px solid var(--line); border-radius:4px; padding:28px 24px; background:var(--paper-raised); display:flex; flex-direction:column; }
-  .involve-card .tag{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--marigold-deep); letter-spacing:.05em; text-transform:uppercase; }
-  .involve-card h3{ font-size:20px; margin-top:10px; }
-  .involve-card p{ margin-top:10px; font-size:14.5px; color:var(--ink-soft); line-height:1.6; flex:1; }
-  .involve-card .btn{ margin-top:18px; align-self:flex-start; }
-
-  /* ---------- donate / contact ---------- */
-  #donate{ background:var(--paper-raised); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  /* ---------- contact / donate ---------- */
+  #donate{ background:var(--paper-raised); border-top:1px solid var(--line); }
   .donate-grid{ display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:start; }
   @media (max-width:900px){ .donate-grid{ grid-template-columns:1fr; gap:40px; } }
 
@@ -237,6 +243,15 @@
   }
   .confirm.show{ display:flex; }
 
+  /* mini forms: Take Part / Volunteer / Partner, grouped on the Contact page like the original */
+  .mini-grid{ margin-top:56px; padding-top:44px; border-top:1px solid var(--line); display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  @media (max-width:800px){ .mini-grid{ grid-template-columns:1fr; } }
+  .mini-card{ border:1px solid var(--line); border-radius:4px; padding:26px 22px; background:var(--paper); display:flex; flex-direction:column; }
+  .mini-card .tag{ font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--marigold-deep); letter-spacing:.05em; text-transform:uppercase; }
+  .mini-card h3{ font-size:19px; margin-top:10px; }
+  .mini-card p{ margin-top:10px; font-size:14px; color:var(--ink-soft); line-height:1.6; flex:1; }
+  .mini-card .btn{ margin-top:16px; align-self:flex-start; }
+
   /* ---------- footer ---------- */
   footer{ background:var(--navy-deep); color:var(--cream-on-navy-soft); padding-block:52px 28px; }
   .foot-grid{ display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:40px; }
@@ -264,11 +279,10 @@
       <span class="brand-word"><b>SAHAS</b><span>Foundation, Mumbai</span></span>
     </a>
     <nav class="links" id="navLinks">
+      <a href="#top">Home</a>
       <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#story">Our Story</a>
       <a href="#team">Team</a>
-      <a href="#involved">Get Involved</a>
+      <a href="#projects">Projects</a>
       <a href="#donate">Contact</a>
       <a href="#donate" class="btn btn-primary">Donate</a>
     </nav>
@@ -287,11 +301,6 @@
         <div>
           <span class="eyebrow">Spreading Aid Health And Smiles</span>
           <h1>For a <em>better</em> tomorrow.</h1>
-          <p class="hero-sub">Take action to help us grow. We at SAHAS, the SAHASIs, are doing our bit towards providing aid through necessary resources like education, care and support to the needy and underprivileged school kids; provide companionship to lonely elders; as well as extend our hand to any specific need of the hour.</p>
-          <div class="hero-cta">
-            <a href="#donate" class="btn btn-primary">Donate</a>
-            <a href="#projects" class="btn btn-line">See our work</a>
-          </div>
         </div>
         <div class="hero-art">
           <svg viewBox="0 0 340 340" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -309,7 +318,16 @@
           </svg>
         </div>
       </div>
+    </div>
 
+    <div class="action-bar">
+      <div class="wrap">
+        <p>Take action to help us grow</p>
+        <a href="#donate" class="btn btn-primary">Donate</a>
+      </div>
+    </div>
+
+    <div class="wrap">
       <div class="stat-strip">
         <div><div class="stat-num">2019</div><div class="stat-label">Registered under the Societies Registration Act, 1860</div></div>
         <div><div class="stat-num">80G</div><div class="stat-label">All donations are tax-exempt to the donor</div></div>
@@ -319,12 +337,13 @@
     </div>
   </section>
 
-  <!-- VISION / ABOUT -->
-  <section id="about" class="navy">
+  <!-- VISION (home page content) -->
+  <section class="navy">
     <div class="wrap">
       <div class="section-head">
-        <span class="eyebrow" style="color:#df9328">SAHASIs · Making life a little easier</span>
-        <h2>Vision</h2>
+        <span class="eyebrow" style="color:#df9328">Who we are</span>
+        <h2>SAHASIs</h2>
+        <p class="tagline">Making life a little easier</p>
       </div>
 
       <div class="quote-block">
@@ -332,45 +351,89 @@
         <cite>Swami Vivekananda</cite>
       </div>
 
-      <p style="max-width:62ch; color:var(--cream-on-navy-soft); font-size:16px; line-height:1.7; margin-bottom:18px;">
+      <p style="max-width:62ch; color:var(--cream-on-navy-soft); font-size:16px; line-height:1.7; margin-bottom:14px;">
+        We at SAHAS, the SAHASIs, are doing our bit towards providing aid through necessary resources like education, care and support to the needy and underprivileged school kids; provide companionship to lonely elders as well as extend our hand to any specific need of the hour.
+      </p>
+      <p style="max-width:62ch; color:var(--cream-on-navy-soft); font-size:16px; line-height:1.7;">
         All those young at heart, with social consciousness, can contribute in whichever capacity they wish, by being associated with the SAHASIs. Our aim is to rouse the Indians to an awareness of their obligations and responsibilities to the nation and through the nation to humanity at large.
       </p>
 
-      <div class="vision-grid">
-        <div class="vision-card">
-          <h4>To Provide</h4>
-          <p>A secure, happy, healthy childhood to the country's underprivileged children.</p>
-        </div>
-        <div class="vision-card">
-          <h4>And</h4>
-          <p>An interesting and cheerful existence to lonely seniors.</p>
-        </div>
-        <div class="vision-card">
-          <h4>Also</h4>
-          <p>Extending a hand for any need or during any calamity in the nation without restriction.</p>
-        </div>
+      <div class="vision-list">
+        <div class="row"><span class="label">To Provide</span><p>A secure, happy, healthy childhood to the country's underprivileged children.</p></div>
+        <div class="row"><span class="label">And</span><p>An interesting and cheerful existence to lonely seniors.</p></div>
+        <div class="row"><span class="label">Also</span><p>Extending a hand for any need or during any calamity in the nation without restriction.</p></div>
       </div>
 
-      <p style="max-width:62ch; color:var(--cream-on-navy-soft); font-size:16px; line-height:1.7; margin-top:36px;">
-        <strong style="color:#fff; font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:.05em; text-transform:uppercase; font-weight:600;">Take Part —</strong>
-        Any Resident or Non Resident Indian who accepts the constitution of SAHAS can enroll as a member of SAHAS, as a life member or yearly member.
-      </p>
+      <div class="take-part">
+        <p>Any Resident or Non Resident Indian who accepts the constitution of SAHAS can enroll as a member of SAHAS, as a life member or yearly member.</p>
+        <a href="#about" class="btn btn-line-invert">Know More</a>
+      </div>
     </div>
   </section>
 
-  <!-- REGISTRATION -->
-  <section id="registration">
-    <div class="wrap" style="max-width:800px;">
+  <!-- ABOUT (registration + our story) -->
+  <section id="about">
+    <div class="wrap">
       <div class="section-head">
-        <span class="eyebrow">Sahas Foundation</span>
-        <h2>Registered &amp; tax-exempt</h2>
+        <span class="eyebrow">About</span>
+        <h2>Sahas Foundation</h2>
       </div>
-      <p style="font-size:15.5px; line-height:1.75; color:var(--ink-soft); margin-bottom:16px;">
-        The foundation is registered with the Charity Commissioner of Mumbai under the Society Registration Act 1860, with Registration Number 2190/2019, dated December 18, 2019. A formal certificate has also been obtained from the appropriate authority that all donations to the Foundation are tax-free* to the donors. Registered under The Society Registration Act 1860, Registration No.: 2190/2019.
-      </p>
-      <p style="font-size:15.5px; line-height:1.75; color:var(--ink-soft);">
-        Donations to the society are exempt under section 80G(5) of the IT Act 1961 vide provisional certificate no. ABVAS8438DF20231, dated 13/03/2023, issued by Commissioner of IT, valid till 31-03-2026.
-      </p>
+
+      <div class="about-copy">
+        <p>The foundation is registered with the Charity Commissioner of Mumbai under the Society Registration Act 1860, with Registration Number 2190/2019, dated December 18, 2019. A formal certificate has also been obtained from the appropriate authority that all donations to the Foundation are tax-free* to the donors. Registered under The Society Registration Act 1860, Registration No.: 2190/2019.</p>
+        <p>Donations to the society are exempt under section 80G(5) of the IT Act 1961 vide provisional certificate no. ABVAS8438DF20231, dated 13/03/2023, issued by Commissioner of IT, valid till 31-03-2026.</p>
+      </div>
+
+      <div class="story-head">
+        <span class="eyebrow">Our Story</span>
+        <h2>How SAHAS began</h2>
+      </div>
+
+      <div class="story-wrap">
+        <div class="story-copy">
+          <p>SAHAS was conceived by a few of us post-retirement, free from the shackles of a scheduled work life, wanting to give back to society a little of what our country gave us, inspired by an article about a few friends from a locality who had come together to provide aid to the needy which they, as individuals, were not able to.</p>
+          <p>Seven of us then — some retirees, some still working, one a housewife, one a doctor — decided we would collect a thousand rupees each, every month, so that at opportune moments we'd be able to give our small contribution where it was needed. As luck would have it, floods devastated Assam right around the time our coffers reached about fifty thousand rupees, and we emptied our collection.</p>
+          <p>Then Himanshu from Dharavi Art told us the children of the Dharavi slums could do with some help, and around the same time we read about Hatkalwadi's severe water shortage. That project was too large for seven of us to handle alone, but it gave us an idea: we needed to be organised so others could join us with their own generosity. After much discussion we agreed on a name — SAHAS, courage — and applied to the Charity Commission to register as an Association.</p>
+          <p>Even as the paperwork was underway, one of us had an accident and was laid up with a broken back. Then COVID happened, and everything stalled for two years; more of us retired, and our beloved Doctor Aunty passed away. By late 2022 we were back on track — a bank account for transparency, and our 80G tax exemption completed with friends' help. When COVID struck, Dr Padmini Desai and Dr Ajit Desai suggested we contribute toward medical equipment for treating patients, and Himanshu came back for the slum children's food. We could do both.</p>
+          <p>Individually, most of the founders already do their bit — volunteering with orphanages, working with temple trusts, sponsoring a girl child's education or their house-help's. Together, we've decided to concentrate first on education, sponsoring six kids' education ourselves, and on adopting TB patients to look after their treatment and their family's health. Everything requires money, and donors are our backbone.</p>
+        </div>
+        <aside class="story-pull">
+          <p>&ldquo;For every project that we conceive, YOU, the people of India, are needed. Become our member if you like, or remain a donor if you so wish. But please be there to help the less privileged.&rdquo;</p>
+          <div class="who">— The founding SAHASIs</div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section id="team" class="navy">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow" style="color:#df9328">Committee Members</span>
+        <h2>Our Current Members</h2>
+      </div>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="avatar">SC</div>
+          <h4>Mr. Surendra Chavhan</h4>
+          <p>AMFI certificate holder, has his own investment firm and is into consultancy for 12+ years. Since last few years, involved with social work also.</p>
+        </div>
+        <div class="team-card">
+          <div class="avatar">DK</div>
+          <h4>Mr. Debjit Kar</h4>
+          <p>MBA with a successful marketing career for last 20+ years. Despite a killing work schedule, feels responsible and thinks we must give something in return to society.</p>
+        </div>
+        <div class="team-card">
+          <div class="avatar">SG</div>
+          <h4>Mrs. Shakuntala Gandhi</h4>
+          <p>Homemaker &amp; social worker since the last 30+ years.</p>
+        </div>
+        <div class="team-card">
+          <div class="avatar">US</div>
+          <h4>Mrs. Usha Sundaram</h4>
+          <p>Retired bank employee, much involved with various charity projects for last 25+ years.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -428,98 +491,12 @@
     </div>
   </section>
 
-  <!-- STORY -->
-  <section id="story" class="navy">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow" style="color:#df9328">Our Story</span>
-        <h2>How SAHAS began</h2>
-      </div>
-
-      <div class="story-wrap">
-        <div class="story-copy">
-          <p>SAHAS was conceived by a few of us post-retirement, free from the shackles of a scheduled work life, wanting to give back to society a little of what our country gave us, inspired by an article about a few friends from a locality who had come together to provide aid to the needy which they, as individuals, were not able to.</p>
-          <p>Seven of us then — some retirees, some still working, one a housewife, one a doctor — decided we would collect a thousand rupees each, every month, so that at opportune moments we'd be able to give our small contribution where it was needed. As luck would have it, floods devastated Assam right around the time our coffers reached about fifty thousand rupees, and we emptied our collection.</p>
-          <p>Then Himanshu from Dharavi Art told us the children of the Dharavi slums could do with some help, and around the same time we read about Hatkalwadi's severe water shortage. That project was too large for seven of us to handle alone, but it gave us an idea: we needed to be organised so others could join us with their own generosity. After much discussion we agreed on a name — SAHAS, courage — and applied to the Charity Commission to register as an Association.</p>
-          <p>Even as the paperwork was underway, one of us had an accident and was laid up with a broken back. Then COVID happened, and everything stalled for two years; more of us retired, and our beloved Doctor Aunty passed away. By late 2022 we were back on track — a bank account for transparency, and our 80G tax exemption completed with friends' help. When COVID struck, Dr Padmini Desai and Dr Ajit Desai suggested we contribute toward medical equipment for treating patients, and Himanshu came back for the slum children's food. We could do both.</p>
-          <p>Individually, most of the founders already do their bit — volunteering with orphanages, working with temple trusts, sponsoring a girl child's education or their house-help's. Together, we've decided to concentrate first on education, sponsoring six kids' education ourselves, and on adopting TB patients to look after their treatment and their family's health. Everything requires money, and donors are our backbone.</p>
-        </div>
-        <aside class="story-pull">
-          <p>&ldquo;For every project that we conceive, YOU, the people of India, are needed. Become our member if you like, or remain a donor if you so wish. But please be there to help the less privileged.&rdquo;</p>
-          <div class="who">— The founding SAHASIs</div>
-        </aside>
-      </div>
-    </div>
-  </section>
-
-  <!-- TEAM -->
-  <section id="team">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow">Committee Members</span>
-        <h2>Our Current Members</h2>
-      </div>
-      <div class="team-grid">
-        <div class="team-card">
-          <div class="avatar">SC</div>
-          <h4>Mr. Surendra Chavhan</h4>
-          <p>AMFI certificate holder, has his own investment firm and is into consultancy for 12+ years. Since last few years, involved with social work also.</p>
-        </div>
-        <div class="team-card">
-          <div class="avatar">DK</div>
-          <h4>Mr. Debjit Kar</h4>
-          <p>MBA with a successful marketing career for last 20+ years. Despite a killing work schedule, feels responsible and thinks we must give something in return to society.</p>
-        </div>
-        <div class="team-card">
-          <div class="avatar">SG</div>
-          <h4>Mrs. Shakuntala Gandhi</h4>
-          <p>Homemaker &amp; social worker since the last 30+ years.</p>
-        </div>
-        <div class="team-card">
-          <div class="avatar">US</div>
-          <h4>Mrs. Usha Sundaram</h4>
-          <p>Retired bank employee, much involved with various charity projects for last 25+ years.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- GET INVOLVED -->
-  <section id="involved" class="navy">
-    <div class="wrap">
-      <div class="section-head">
-        <span class="eyebrow" style="color:#df9328">Take Part</span>
-        <h2>Take a part and help us grow</h2>
-      </div>
-      <div class="involve-grid">
-        <div class="involve-card">
-          <span class="tag mono">Membership</span>
-          <h3>Take Part</h3>
-          <p>Any Resident or Non Resident Indian who accepts the constitution of SAHAS can enroll as a member of SAHAS, as a life member or yearly member.</p>
-          <a href="#donate" class="btn btn-line">Know More</a>
-        </div>
-        <div class="involve-card">
-          <span class="tag mono">Volunteer</span>
-          <h3>Volunteer With Us</h3>
-          <p>Lend your time and skills to SAHAS's ongoing projects — from food-packet distribution to tutoring and outreach.</p>
-          <a href="#donate" class="btn btn-line">Sign up to volunteer</a>
-        </div>
-        <div class="involve-card">
-          <span class="tag mono">Partnership</span>
-          <h3>Partner With Us</h3>
-          <p>Schools, clinics, corporates and other NGOs — if your work overlaps with ours, let's find where we can help each other.</p>
-          <a href="#donate" class="btn btn-line">Discuss a partnership</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- DONATE / CONTACT -->
+  <!-- CONTACT / DONATE -->
   <section id="donate">
     <div class="wrap">
       <div class="section-head">
         <span class="eyebrow">Contact Us</span>
-        <h2>Contribute</h2>
+        <h2>Take a part and help us grow</h2>
         <p>Online Transfer — for deposits being made in ₹ INR. All Indian deposits qualify for 80G tax exemption.</p>
       </div>
 
@@ -550,19 +527,13 @@
               <div><label for="email">Email</label><input id="email" name="email" type="email" required></div>
               <div><label for="phone">Phone</label><input id="phone" name="phone" type="tel"></div>
             </div>
-            <div>
-              <label for="reason">I'd like to</label>
-              <select id="reason" name="reason">
-                <option>Make a donation</option>
-                <option>Become a member</option>
-                <option>Volunteer</option>
-                <option>Explore a partnership</option>
-                <option>Something else</option>
-              </select>
+            <div class="field-row">
+              <div><label for="amount">Amount</label><input id="amount" name="amount" type="number" min="0" placeholder="₹"></div>
+              <div><label for="pan">PAN Number</label><input id="pan" name="pan" placeholder="For 80G receipt"></div>
             </div>
             <div>
-              <label for="msg">Message</label>
-              <textarea id="msg" name="msg" placeholder="Tell us a little about what you'd like to do"></textarea>
+              <label for="address">Address</label>
+              <input id="address" name="address">
             </div>
             <button class="btn btn-primary" type="submit" style="margin-top:4px;">Submit Application</button>
             <p class="form-note">This form is a working demo for the redesign — wire it to a real backend (or Wix Forms, if migrating) before going live.</p>
@@ -571,6 +542,27 @@
               <span>Thanks — the SAHASIs will be in touch soon.</span>
             </div>
           </form>
+        </div>
+      </div>
+
+      <div class="mini-grid">
+        <div class="mini-card">
+          <span class="tag mono">Membership</span>
+          <h3>Take Part</h3>
+          <p>Any Resident or Non Resident Indian who accepts the constitution of SAHAS can enroll as a member, as a life member or yearly member.</p>
+          <a href="#about" class="btn btn-line">Know More</a>
+        </div>
+        <div class="mini-card">
+          <span class="tag mono">Volunteer</span>
+          <h3>Volunteer With Us</h3>
+          <p>Lend your time and skills to SAHAS's ongoing projects — from food-packet distribution to tutoring and outreach.</p>
+          <a href="mailto:sahasfoundationmumbai@gmail.com" class="btn btn-line">Sign up to volunteer</a>
+        </div>
+        <div class="mini-card">
+          <span class="tag mono">Partnership</span>
+          <h3>Partner With Us</h3>
+          <p>Schools, clinics, corporates and other NGOs — if your work overlaps with ours, let's find where we can help each other.</p>
+          <a href="mailto:sahasfoundationmumbai@gmail.com" class="btn btn-line">Discuss a partnership</a>
         </div>
       </div>
     </div>
